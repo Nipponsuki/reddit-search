@@ -16,4 +16,4 @@ const Flexbox = styled.div`
   padding: ${(props) => props.padding};
 `;
 
-export default { Flexbox };
+export default Flexbox;
