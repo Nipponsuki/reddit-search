@@ -31,7 +31,9 @@ const TableHeader = styled.div`
 `;
 
 const Table = () => {
-  const { items: bookmarks } = useSelector(bookmarksSelector);
+  const {
+    present: { items: bookmarks },
+  } = useSelector(bookmarksSelector);
   const { count } = useInfiniteScroll(bookmarks && bookmarks.length);
 
   return (
