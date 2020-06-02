@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { bookmarksSelector } from 'store/bookmarksStore';
+import { useInfiniteScroll } from 'hooks/useInfiniteScroll';
 import TableItem from './TableItem';
 import NoItems from './NoItems';
 
@@ -31,6 +32,7 @@ const TableHeader = styled.div`
 
 const Table = () => {
   const { items: bookmarks } = useSelector(bookmarksSelector);
+  const { count } = useInfiniteScroll(bookmarks && bookmarks.length);
 
   return (
     <TableContainer>
@@ -40,7 +42,9 @@ const Table = () => {
       </TableHeader>
       {bookmarks && bookmarks.length === 0 && <NoItems />}
       {bookmarks &&
-        bookmarks.map((item) => <TableItem key={item.id} item={item} />)}
+        bookmarks
+          .slice(0, count)
+          .map((item) => <TableItem key={item.id} item={item} />)}
     </TableContainer>
   );
 };
