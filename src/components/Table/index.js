@@ -1,20 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import TableItem from './TableItem';
 
-const ITEMS = [
-  { id: 1, text: 'Reactasdadadadadasdadadsadasd' },
-  {
-    id: 2,
-    text:
-      'Reactasdadadadadasdadadsadasdasdkjahdkahdakdhjsalkdjhadkljahdklajhdakljdhaskdjhakldj',
-  },
-  {
-    id: 3,
-    text:
-      'Reactasdadadadadasdadadsadasdasdkjahdkahdakdhjsalkdjhadkljahdklajhdakljdhaskdjhakldjasdadasdadadasdasd',
-  },
-];
+import { bookmarksSelector } from 'store/bookmarksStore';
+import TableItem from './TableItem';
+import NoItems from './NoItems';
 
 const TableContainer = styled.div`
   width: 100%;
@@ -40,15 +30,17 @@ const TableHeader = styled.div`
 `;
 
 const Table = () => {
+  const { items: bookmarks } = useSelector(bookmarksSelector);
+
   return (
     <TableContainer>
       <TableHeader>
         <span>Link</span>
         <span>Notes</span>
       </TableHeader>
-      {ITEMS.map((item) => (
-        <TableItem key={item.id} item={item.text} />
-      ))}
+      {bookmarks && bookmarks.length === 0 && <NoItems />}
+      {bookmarks &&
+        bookmarks.map((item) => <TableItem key={item.id} item={item} />)}
     </TableContainer>
   );
 };

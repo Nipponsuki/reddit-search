@@ -1,8 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./counterSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import searchReducer from './searchStore';
+import bookmarksReducer from './bookmarksStore';
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
+    search: searchReducer,
+    bookmarks: bookmarksReducer,
   },
 });

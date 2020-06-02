@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+
+import { removeItem } from 'store/bookmarksStore';
 import StarIcon from 'components/Icons/Star';
 import Flexbox from 'components/Flexbox';
 import BinIcon from 'components/Icons/Bin';
@@ -54,17 +57,16 @@ const Notes = styled.textarea`
 
 const TableItem = ({ item }) => {
   const [inFavorites, setInFavorites] = React.useState(false);
+  const dispatch = useDispatch();
+
   const toggleFavorite = () => setInFavorites((prev) => !prev);
+
   return (
     <TableItemContainer>
       <LinkAndStar>
         <LinkToPost>
-          <a
-            href="https://www.vk.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {item}
+          <a href={item.url} target="_blank" rel="noopener noreferrer">
+            {item.title}
           </a>
         </LinkToPost>
         <Flexbox cursor="pointer" onClick={toggleFavorite}>
@@ -73,7 +75,7 @@ const TableItem = ({ item }) => {
       </LinkAndStar>
       <NotesAndBin>
         <Notes />
-        <Flexbox cursor="pointer">
+        <Flexbox cursor="pointer" onClick={() => dispatch(removeItem(item))}>
           <BinIcon />
         </Flexbox>
       </NotesAndBin>

@@ -1,13 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Flexbox from 'components/Flexbox';
 import SearchIcon from 'components/Icons/Search';
+import { searchSelector, fetchSearchResults } from 'store/searchStore';
 import SearchResultsContainer from './SearchResultsContainer';
-
-const RESULTS = [
-  { id: 1, text: 'Reactasdadadadadasdadadsadasdasdadadadadadadadadadad' },
-];
 
 const SearchBoxContainer = styled.div`
   width: 100%;
@@ -57,6 +55,8 @@ const SearchAction = styled.div`
   }
 `;
 const SearchBox = () => {
+  const { items } = useSelector(searchSelector);
+  const dispatch = useDispatch();
   const [areResultsShown, setAreResultsShown] = React.useState(false);
   const [searchQuery, setSearchQuery] = React.useState('');
   const showResults = () => setAreResultsShown(true);
@@ -66,6 +66,7 @@ const SearchBox = () => {
     const { value } = e.target;
     setSearchQuery(value);
     if (value.trim().length > 0) {
+      dispatch(fetchSearchResults(searchQuery));
       showResults();
       return;
     }
@@ -89,12 +90,19 @@ const SearchBox = () => {
           value={searchQuery}
           type="text"
           name="search"
+          autoComplete="off"
         />
         <SearchAction>
           <SearchIcon />
         </SearchAction>
       </SearchBoxContainer>
-      {areResultsShown && <SearchResultsContainer results={RESULTS} />}
+      {areResultsShown && (
+        <SearchResultsContainer
+          results={items}
+          setAreResultsShown={setAreResultsShown}
+          setSearchQuery={setSearchQuery}
+        />
+      )}
     </Flexbox>
   );
 };

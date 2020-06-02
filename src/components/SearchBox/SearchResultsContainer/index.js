@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+
+import { useOutsideClick } from 'hooks/useOutsideClick';
 import SearchResult from '../SearchResult';
 
 const ResultsContainer = styled.div`
@@ -14,23 +16,39 @@ const ResultsContainer = styled.div`
   margin-top: 10px;
   overflow-x: hidden;
   scrollbar-width: none;
+  background: #ffffff;
   -ms-overflow-style: none;
   ::-webkit-scrollbar {
     width: 0;
   }
 `;
 
-const SearchResultsContainer = ({ results }) => {
+const SearchResultsContainer = ({
+  results,
+  setAreResultsShown,
+  setSearchQuery,
+}) => {
+  const dropdownRef = React.useRef();
+
+  useOutsideClick(dropdownRef, () => {
+    setAreResultsShown(false);
+  });
+
   return (
     <>
       {results && (
-        <ResultsContainer>
+        <ResultsContainer ref={dropdownRef}>
           {results.length > 0 &&
             results.map((result) => (
-              <SearchResult key={result.id} result={result.text} />
+              <SearchResult
+                key={result.data.id}
+                result={result.data}
+                setSearchQuery={setSearchQuery}
+                setAreResultsShown={setAreResultsShown}
+              />
             ))}
           {results.length === 0 && (
-            <SearchResult result="No results" disabled />
+            <SearchResult result={{ title: 'No results' }} disabled />
           )}
         </ResultsContainer>
       )}

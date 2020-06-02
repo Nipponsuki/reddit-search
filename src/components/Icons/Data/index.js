@@ -2,10 +2,10 @@ import React from 'react';
 
 const DataIcon = () => (
   <svg
-    width="1em"
-    height="1em"
+    width="3rem"
+    height="3rem"
     viewBox="0 0 16 16"
-    fill="currentColor"
+    fill="#ccc"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path d="M3.81 4.063A1.5 1.5 0 0 1 4.98 3.5h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1-.78.624l-3.7-4.624a.5.5 0 0 0-.39-.188H4.98a.5.5 0 0 0-.39.188L.89 9.312a.5.5 0 1 1-.78-.624l3.7-4.625z" />

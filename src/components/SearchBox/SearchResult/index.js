@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { useDispatch } from 'react-redux';
+import { addItem } from 'store/bookmarksStore';
+
 const ResultContainer = styled.div`
   width: 100%;
   padding: 10px;
@@ -17,10 +20,21 @@ const ResultContainer = styled.div`
   overflow: hidden;
 `;
 
-const SearchResult = ({ result, disabled }) => {
+const SearchResult = ({
+  result,
+  disabled,
+  setAreResultsShown,
+  setSearchQuery,
+}) => {
+  const dispatch = useDispatch();
+  const addToBookmarks = (item) => {
+    dispatch(addItem(item));
+    setAreResultsShown(false);
+    setSearchQuery('');
+  };
   return (
-    <ResultContainer disabled={disabled}>
-      <span>{result}</span>
+    <ResultContainer disabled={disabled} onClick={() => addToBookmarks(result)}>
+      <span>{result.title}</span>
     </ResultContainer>
   );
 };
