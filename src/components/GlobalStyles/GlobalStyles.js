@@ -12,6 +12,13 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: inherit;
   }  
+
+  svg{
+    transition: all .3s ease;
+    &:hover{
+      transform: scale(1.2);
+    }
+  }
 `;
 
 export default GlobalStyle;

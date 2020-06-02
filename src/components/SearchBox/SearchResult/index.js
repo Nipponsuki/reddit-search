@@ -12,11 +12,9 @@ const ResultContainer = styled.div`
   &:hover {
     background: #a29bfe44;
   }
-
-  span {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 const SearchResult = ({ result, disabled }) => {

@@ -5,7 +5,9 @@ import Flexbox from 'components/Flexbox';
 import SearchIcon from 'components/Icons/Search';
 import SearchResultsContainer from './SearchResultsContainer';
 
-const RESULTS = [];
+const RESULTS = [
+  { id: 1, text: 'Reactasdadadadadasdadadsadasdasdadadadadadadadadadad' },
+];
 
 const SearchBoxContainer = styled.div`
   width: 100%;
@@ -48,6 +50,11 @@ const SearchAction = styled.div`
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
   cursor: pointer;
+  svg {
+    &:hover {
+      transform: scale(1);
+    }
+  }
 `;
 const SearchBox = () => {
   const [areResultsShown, setAreResultsShown] = React.useState(false);

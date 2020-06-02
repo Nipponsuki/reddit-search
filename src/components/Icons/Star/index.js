@@ -2,10 +2,10 @@ import React from 'react';
 
 const StarIcon = ({ isFavorited }) => (
   <>
-    {isFavorited ? (
+    {!isFavorited ? (
       <svg
-        width="1em"
-        height="1em"
+        width="1.5rem"
+        height="1.5rem"
         viewBox="0 0 16 16"
         fill="#FCC201"
         xmlns="http://www.w3.org/2000/svg"
@@ -14,8 +14,8 @@ const StarIcon = ({ isFavorited }) => (
       </svg>
     ) : (
       <svg
-        width="1em"
-        height="1em"
+        width="1.5rem"
+        height="1.5rem"
         viewBox="0 0 16 16"
         fill="#FCC201"
         xmlns="http://www.w3.org/2000/svg"

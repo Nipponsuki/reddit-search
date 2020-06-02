@@ -10,7 +10,7 @@ const ResultsContainer = styled.div`
   min-height: 20px;
   border-radius: 5px;
   border: 1px solid #a29bfe;
-  box-shadow: 0 0 2px 1px #ccc;
+  box-shadow: 0 0 2px 1px #a29bfe44;
   margin-top: 10px;
   overflow-x: hidden;
   scrollbar-width: none;
