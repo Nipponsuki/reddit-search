@@ -7,6 +7,8 @@ import StarIcon from 'components/Icons/Star';
 import Flexbox from 'components/Flexbox';
 import BinIcon from 'components/Icons/Bin';
 
+const REDDIT_URL = `https://www.reddit.com`;
+
 const TableItemContainer = styled.div`
   width: 100%;
   display: flex;
@@ -65,7 +67,11 @@ const TableItem = ({ item }) => {
     <TableItemContainer>
       <LinkAndStar>
         <LinkToPost>
-          <a href={item.url} target="_blank" rel="noopener noreferrer">
+          <a
+            href={`${REDDIT_URL}${item.url}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {item.title}
           </a>
         </LinkToPost>
