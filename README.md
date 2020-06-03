@@ -4,4 +4,4 @@
  yarn dev
 
 ### Link to deployed project 
- https://rickandmorty-eni98cusa.now.sh/
+ https://silly-shirley-ffe861.netlify.app/
